@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardware & Accessories | ÚNIQVE®</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .category-hero {
+            background: linear-gradient(rgba(17,17,17,0.7), rgba(17,17,17,0.7)), url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            color: #FFFFFF;
+            padding: 85px 5%;
+            text-align: center;
+        }
+
+        .filter-bar {
+            max-width: 1400px;
+            margin: 40px auto 20px;
+            padding: 0 5%;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--light-grey);
+            border: 1px solid var(--border-grey);
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--bg-primary);
+            color: var(--accent-gold);
+            border-color: var(--bg-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <nav id="main-navbar">
+        <a href="home.html" class="nav-brand">ÚNIQVE<span class="gold-accent">®</span></a>
+        <ul class="nav-links" id="nav-links-list">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="shop.html">Shop (200+)</a></li>
+            <li><a href="men.html">Men</a></li>
+            <li><a href="women.html">Women</a></li>
+            <li><a href="shoes.html">Shoes</a></li>
+            <li><a href="clothing.html">Clothing</a></li>
+            <li><a href="accessories.html" class="active">Accessories</a></li>
+        </ul>
+        <div class="nav-icons">
+            <button onclick="app.toggleTheme()" title="Toggle Dark/Light Mode">🌙</button>
+            <a href="search.html" title="Search">🔍</a>
+            <a href="wishlist.html" title="Wishlist">❤️ <span id="wishlist-badge" class="nav-badge">0</span></a>
+            <a href="cart.html" title="Cart">🛒 <span id="cart-badge" class="nav-badge">0</span></a>
+            <a href="profile.html" title="Profile">👤</a>
+            <button class="mobile-menu-toggle" onclick="app.toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- Category Banner -->
+    <header class="category-hero">
+        <h1 style="font-size: 2.8rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px;">ÚNIQVE Accessories &amp; Hardware</h1>
+        <p style="color: var(--accent-gold); letter-spacing: 2px; text-transform: uppercase; font-size: 1rem; font-weight: 700;">50 Original Timepieces, Bags, Caps &amp; Gym Essentials</p>
+    </header>
+
+    <!-- Subcategory Filtration Bar -->
+    <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterAccessories('all', this)">All Hardware (50)</button>
+        <button class="filter-btn" onclick="filterAccessories('sports-watches', this)">Timepieces</button>
+        <button class="filter-btn" onclick="filterAccessories('bags', this)">Bags &amp; Packs</button>
+        <button class="filter-btn" onclick="filterAccessories('caps', this)">Headwear</button>
+        <button class="filter-btn" onclick="filterAccessories('gym-essentials', this)">Gym Gear</button>
+    </div>
+
+    <!-- Products Grid -->
+    <main style="max-width: 1400px; margin: 0 auto 60px; padding: 0 5%;">
+        <div class="product-grid" id="accessories-grid">
+            <!-- Dynamically populated via script -->
+        </div>
+    </main>
+
+    <!-- Footer Component -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>ÚNIQVE®</h4>
+                <p style="color:#a0a0a0; font-size:0.9rem; max-width:280px;">"Designed Beyond Ordinary." Premium lifestyle footwear, apparel, and hardware.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Collections</h4>
+                <ul>
+                    <li><a href="men.html">Men's Collection</a></li>
+                    <li><a href="women.html">Women's Collection</a></li>
+                    <li><a href="shoes.html">Footwear</a></li>
+                    <li><a href="clothing.html">Apparel</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="contact.html">Global Support</a></li>
+                    <li><a href="checkout.html">Shipping & Returns</a></li>
+                    <li><a href="about.html">Brand Story</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 ÚNIQVE Global Inc. All Rights Reserved.</span>
+            <span>Designed Beyond Ordinary.</span>
+        </div>
+    </footer>
+
+    <!-- Runtime Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        let currentSubcategory = 'all';
+
+        function renderAccessories(subcat = 'all') {
+            const grid = document.getElementById('accessories-grid');
+            if (!grid) return;
+
+            let accessories = STORE_PRODUCTS.filter(p => p.category === 'accessories');
+            if (subcat !== 'all') {
+                accessories = accessories.filter(p => p.subcategory.includes(subcat) || subcat.includes(p.subcategory));
+            }
+
+            if (accessories.length === 0) {
+                grid.innerHTML = `<p style="grid-column:1/-1; text-align:center; padding: 60px; color:var(--text-muted);">No hardware releases found for this category.</p>`;
+                return;
+            }
+
+            grid.innerHTML = accessories.map(product => app.createProductCardHTML(product)).join('');
+        }
+
+        function filterAccessories(subcat, btnElement) {
+            currentSubcategory = subcat;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            if (btnElement) btnElement.classList.add('active');
+            renderAccessories(subcat);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderAccessories('all');
+        });
+    </script>
+</body>
+</html>

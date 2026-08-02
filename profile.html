@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard | ÚNIQVE®</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .profile-container {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+        }
+
+        .profile-sidebar {
+            background: var(--light-grey);
+            padding: 30px;
+            border: 1px solid var(--border-grey);
+        }
+
+        .profile-nav-link {
+            display: block;
+            padding: 12px 0;
+            color: var(--text-main);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border-grey);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-weight: 700;
+        }
+
+        .profile-nav-link:hover, .profile-nav-link.active {
+            color: var(--accent-gold);
+            padding-left: 5px;
+        }
+
+        .profile-content-panel {
+            background: var(--card-bg);
+            padding: 40px;
+            border: 1px solid var(--border-grey);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--light-grey);
+            border: 1px solid var(--border-grey);
+            font-size: 0.95rem;
+            outline: none;
+            color: var(--text-main);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <nav id="main-navbar">
+        <a href="home.html" class="nav-brand">ÚNIQVE<span class="gold-accent">®</span></a>
+        <ul class="nav-links" id="nav-links-list">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="shop.html">Shop (200+)</a></li>
+            <li><a href="shoes.html">Shoes</a></li>
+            <li><a href="clothing.html">Clothing</a></li>
+            <li><a href="accessories.html">Accessories</a></li>
+        </ul>
+        <div class="nav-icons">
+            <button onclick="app.toggleTheme()" title="Toggle Dark/Light Mode">🌙</button>
+            <a href="search.html" title="Search">🔍</a>
+            <a href="wishlist.html" title="Wishlist">❤️ <span id="wishlist-badge" class="nav-badge">0</span></a>
+            <a href="cart.html" title="Cart">🛒 <span id="cart-badge" class="nav-badge">0</span></a>
+            <a href="profile.html" title="Profile" style="color:var(--accent-gold);">👤</a>
+            <button class="mobile-menu-toggle" onclick="app.toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+
+    <header style="text-align:center; padding: 60px 5%; background: var(--bg-primary); color: #fff;">
+        <h1 style="text-transform: uppercase; letter-spacing: 2px; font-weight:800;">Client Portal</h1>
+        <p style="color: var(--accent-gold); letter-spacing: 1px; font-size: 0.9rem; margin-top: 10px; font-weight:700;">Account Security &amp; Saved Preferences</p>
+    </header>
+
+    <main class="profile-container">
+        <!-- Sidebar Navigation -->
+        <aside class="profile-sidebar">
+            <div style="text-align:center; margin-bottom:25px;">
+                <div style="width:80px; height:80px; border-radius:50%; background:var(--accent-gold); color:#111; display:flex; align-items:center; justify-content:center; font-size:2rem; font-weight:bold; margin:0 auto 10px;">👤</div>
+                <h4 id="user-display-name" style="font-size:1rem; text-transform:uppercase;">Alexandre Vance</h4>
+                <p id="user-display-email" style="font-size:0.8rem; color:var(--text-muted);">alexandre.vance@example.com</p>
+            </div>
+            <h3 style="font-size: 0.9rem; text-transform: uppercase; margin-bottom: 15px; color: var(--text-main); font-weight:800;">Dashboard</h3>
+            <a class="profile-nav-link active" onclick="switchTab('details', this)">Account Details</a>
+            <a class="profile-nav-link" onclick="switchTab('orders', this)">Order History</a>
+            <a class="profile-nav-link" onclick="switchTab('addresses', this)">Saved Addresses</a>
+            <a class="profile-nav-link" onclick="authCtrl.logout()" style="color: #d9534f; border:none; margin-top:20px;">Sign Out</a>
+        </aside>
+
+        <!-- Dynamic Main Content Panel -->
+        <section class="profile-content-panel" id="panel-content">
+            <!-- Populated via script -->
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <footer>
+        <div class="footer-bottom" style="border:none; text-align:center;">
+            <span>&copy; 2026 ÚNIQVE Global Inc. All Rights Reserved.</span>
+        </div>
+    </footer>
+
+    <!-- Runtime Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/login.js"></script>
+    <script>
+        function switchTab(tabName, element) {
+            document.querySelectorAll('.profile-nav-link').forEach(l => l.classList.remove('active'));
+            if(element) element.classList.add('active');
+
+            const panel = document.getElementById('panel-content');
+
+            if (tabName === 'details') {
+                panel.innerHTML = `
+                    <h2 style="font-size: 1.3rem; text-transform: uppercase; margin-bottom: 25px; font-weight:800;">Personal Information</h2>
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-input" value="Alexandre Vance">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" value="alexandre.vance@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="text" class="form-input" value="+1 (555) 382-9100">
+                    </div>
+                    <button class="btn-primary" style="padding: 12px 24px; font-size: 0.85rem;" onclick="app.showToast('Account details updated successfully.')">Save Changes</button>
+                `;
+            } else if (tabName === 'orders') {
+                panel.innerHTML = `
+                    <h2 style="font-size: 1.3rem; text-transform: uppercase; margin-bottom: 25px; font-weight:800;">Order History</h2>
+                    <div style="background: var(--light-grey); padding: 20px; border: 1px solid var(--border-grey); margin-bottom: 15px;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom: 10px; font-size:0.9rem;">
+                            <span style="font-weight:bold;">Order #UNQ-84920</span>
+                            <span style="color: var(--accent-gold); font-weight:bold;">Delivered</span>
+                        </div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Placed on May 14, 2026 • 2 Items • $385.00</p>
+                    </div>
+                    <div style="background: var(--light-grey); padding: 20px; border: 1px solid var(--border-grey);">
+                        <div style="display:flex; justify-content:space-between; margin-bottom: 10px; font-size:0.9rem;">
+                            <span style="font-weight:bold;">Order #UNQ-77112</span>
+                            <span style="color: var(--accent-gold); font-weight:bold;">Processing</span>
+                        </div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Placed on June 28, 2026 • 1 Item • $220.00</p>
+                    </div>
+                `;
+            } else if (tabName === 'addresses') {
+                panel.innerHTML = `
+                    <h2 style="font-size: 1.3rem; text-transform: uppercase; margin-bottom: 25px; font-weight:800;">Saved Shipping Addresses</h2>
+                    <div style="background: var(--light-grey); padding: 20px; border: 1px solid var(--border-grey); margin-bottom: 15px;">
+                        <p style="font-weight:bold; font-size:0.95rem; margin-bottom:5px;">Primary Residence</p>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); line-height:1.5;">742 Evergreen Terrace, Suite 4B<br>New York, NY 10001<br>United States</p>
+                    </div>
+                    <button class="btn-primary" style="padding: 12px 24px; font-size: 0.85rem;" onclick="app.showToast('Address registration modal opened.')">+ Add New Address</button>
+                `;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('store_user'));
+            if (user && user.email) {
+                document.getElementById('user-display-email').innerText = user.email;
+                document.getElementById('user-display-name').innerText = user.email.split('@')[0].toUpperCase();
+            }
+            switchTab('details', document.querySelector('.profile-nav-link'));
+        });
+    </script>
+</body>
+</html>

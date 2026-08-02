@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | ÚNIQVE®</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .auth-wrapper {
+            min-height: 100vh;
+            background: linear-gradient(rgba(17,17,17,0.75), rgba(17,17,17,0.75)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .auth-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            padding: 45px 40px;
+            width: 100%;
+            max-width: 440px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            color: #FFFFFF;
+        }
+
+        .auth-brand {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            margin-bottom: 6px;
+            color: #FFFFFF;
+        }
+
+        .auth-subtitle {
+            text-align: center;
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            color: #E0E0E0;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .form-input-ctrl {
+            width: 100%;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #FFFFFF;
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        .form-input-ctrl:focus {
+            border-color: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .auth-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            margin-bottom: 25px;
+            color: #DDD;
+        }
+
+        .auth-options a {
+            color: var(--accent-gold);
+            text-decoration: none;
+        }
+
+        .social-login-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 10px 18px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .social-btn:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <h1 class="auth-brand">Ú N I Q V E<span style="color:var(--accent-gold);">®</span></h1>
+            <p class="auth-subtitle">Designed Beyond Ordinary.</p>
+
+            <form id="login-form" onsubmit="authCtrl.handleLogin(event)">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-input-ctrl" placeholder="name@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-input-ctrl" placeholder="••••••••" required>
+                </div>
+
+                <div class="auth-options">
+                    <label><input type="checkbox" id="remember"> Remember Me</label>
+                    <a href="#">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width:100%; margin-bottom:12px;">Sign In</button>
+                <button type="button" class="btn-secondary" style="width:100%; color:#fff; border-color:rgba(255,255,255,0.4);" onclick="authCtrl.continueAsGuest()">Continue as Guest</button>
+            </form>
+
+            <div style="text-align:center; margin-top:20px; font-size:0.85rem; color:#bbb;">
+                Don't have an account? <a href="#" style="color:var(--accent-gold);" onclick="app.showToast('Create account modal triggered.')">Create Account</a>
+            </div>
+
+            <!-- Social Login Icons (UI Only) -->
+            <div style="text-align:center; margin-top:25px; font-size:0.75rem; color:#888; text-transform:uppercase; letter-spacing:1px;">Or Sign In With</div>
+            <div class="social-login-grid">
+                <button class="social-btn" onclick="app.showToast('Google login initiated.')">Google</button>
+                <button class="social-btn" onclick="app.showToast('Apple ID login initiated.')">Apple</button>
+                <button class="social-btn" onclick="app.showToast('Facebook login initiated.')">Facebook</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

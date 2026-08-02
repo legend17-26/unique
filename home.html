@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÚNIQVE® | Official Global Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .hero-banner {
+            height: 88vh;
+            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #FFFFFF;
+            padding: 0 20px;
+        }
+
+        .hero-heading {
+            font-size: 3.8rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 18px;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .hero-subheading {
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            margin-bottom: 35px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .category-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .category-card-box {
+            position: relative;
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 25px;
+            color: #fff;
+            text-decoration: none;
+            overflow: hidden;
+            border: 1px solid var(--border-grey);
+            transition: var(--transition-smooth);
+        }
+
+        .category-card-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+            transition: var(--transition-smooth);
+        }
+
+        .category-card-box:hover::before {
+            background: linear-gradient(to top, rgba(212,175,55,0.85), rgba(17,17,17,0.4));
+        }
+
+        .category-card-title {
+            position: relative;
+            z-index: 2;
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <nav id="main-navbar">
+        <a href="home.html" class="nav-brand">ÚNIQVE<span class="gold-accent">®</span></a>
+        <ul class="nav-links" id="nav-links-list">
+            <li><a href="home.html" class="active">Home</a></li>
+            <li><a href="shop.html">Shop (200+)</a></li>
+            <li><a href="men.html">Men</a></li>
+            <li><a href="women.html">Women</a></li>
+            <li><a href="shoes.html">Shoes</a></li>
+            <li><a href="clothing.html">Clothing</a></li>
+            <li><a href="accessories.html">Accessories</a></li>
+        </ul>
+        <div class="nav-icons">
+            <button onclick="app.toggleTheme()" title="Toggle Dark/Light Mode">🌙</button>
+            <a href="search.html" title="Search">🔍</a>
+            <a href="wishlist.html" title="Wishlist">❤️ <span id="wishlist-badge" class="nav-badge">0</span></a>
+            <a href="cart.html" title="Cart">🛒 <span id="cart-badge" class="nav-badge">0</span></a>
+            <a href="profile.html" title="Profile">👤</a>
+            <button class="mobile-menu-toggle" onclick="app.toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Banner Component -->
+    <header class="hero-banner">
+        <p class="hero-subheading">Designed Beyond Ordinary.</p>
+        <h1 class="hero-heading">Move Different.<br>Wear ÚNIQVE.</h1>
+        <div class="hero-actions">
+            <a href="shop.html" class="btn-primary">Shop Now</a>
+            <a href="shop.html" class="btn-secondary">Explore Collection</a>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main style="max-width: 1400px; margin: 0 auto; padding: 0 5%;">
+        
+        <!-- Featured Categories Section -->
+        <section style="margin-top: 60px;">
+            <div style="text-align:center;">
+                <h2 style="font-size:2.2rem; text-transform:uppercase; letter-spacing:1.5px; font-weight:800;">Featured Categories</h2>
+                <p style="color:var(--accent-gold); letter-spacing:2px; font-size:0.95rem; text-transform:uppercase; font-weight:700;">Explore Architectural Essentials</p>
+            </div>
+            <div class="category-cards-grid">
+                <a href="shoes.html" class="category-card-box" style="background-image: url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80');">
+                    <span class="category-card-title">Footwear</span>
+                </a>
+                <a href="clothing.html" class="category-card-box" style="background-image: url('https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80');">
+                    <span class="category-card-title">Apparel</span>
+                </a>
+                <a href="accessories.html" class="category-card-box" style="background-image: url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80');">
+                    <span class="category-card-title">Accessories</span>
+                </a>
+                <a href="shoes.html?sub=training" class="category-card-box" style="background-image: url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80');">
+                    <span class="category-card-title">Sports</span>
+                </a>
+                <a href="accessories.html?sub=bags" class="category-card-box" style="background-image: url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80');">
+                    <span class="category-card-title">Bags & Luggage</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- New Arrivals (8 Premium Products) -->
+        <section style="margin: 80px 0 60px;">
+            <div style="text-align:center; margin-bottom: 40px;">
+                <h2 style="font-size: 2.2rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight:800;">New Arrivals</h2>
+                <p style="color: var(--accent-gold); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; font-weight:700;">Click Any Product Image For Specifications Showcase</p>
+            </div>
+            <div class="product-grid" id="new-arrivals-container">
+                <!-- Populated via script -->
+            </div>
+        </section>
+
+        <!-- Trending Best Sellers -->
+        <section style="margin: 60px 0;">
+            <div style="text-align:center; margin-bottom: 40px;">
+                <h2 style="font-size: 2.2rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight:800;">Trending &amp; Best Sellers</h2>
+                <p style="color: var(--accent-gold); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; font-weight:700;">Customer Favorites Worldwide</p>
+            </div>
+            <div class="product-grid" id="trending-container">
+                <!-- Populated via script -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Component -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>ÚNIQVE®</h4>
+                <p style="color:#a0a0a0; font-size:0.9rem; max-width:280px; line-height:1.6;">"Designed Beyond Ordinary." Premium lifestyle sneakers, heavyweight hoodies, sports watches, and accessories.</p>
+                <div style="margin-top:15px; font-size:0.85rem; color:var(--accent-gold);">
+                    Newsletter:
+                    <div style="display:flex; margin-top:8px;">
+                        <input type="email" placeholder="Your email..." style="padding:10px; border:none; width:70%; font-size:0.85rem;">
+                        <button onclick="app.showToast('Subscribed to ÚNIQVE newsletter!')" style="background:var(--accent-gold); border:none; padding:10px 15px; font-weight:bold; cursor:pointer;">Join</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="shop.html">All 200+ Products</a></li>
+                    <li><a href="men.html">Men's Collection</a></li>
+                    <li><a href="women.html">Women's Collection</a></li>
+                    <li><a href="shoes.html">Footwear Architecture</a></li>
+                    <li><a href="clothing.html">Apparel Architecture</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="contact.html">Global Support</a></li>
+                    <li><a href="checkout.html">Checkout Gateway</a></li>
+                    <li><a href="cart.html">Shopping Bag</a></li>
+                    <li><a href="wishlist.html">Saved Wishlist</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Policies &amp; Socials</h4>
+                <ul>
+                    <li><a href="about.html">Brand Story & Mission</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+                    <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 ÚNIQVE Global Inc. All Rights Reserved.</span>
+            <span>Designed Beyond Ordinary.</span>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const newArrivals = document.getElementById('new-arrivals-container');
+            const trending = document.getElementById('trending-container');
+
+            if (newArrivals && typeof STORE_PRODUCTS !== 'undefined') {
+                const arrivals = STORE_PRODUCTS.slice(0, 8);
+                newArrivals.innerHTML = arrivals.map(p => app.createProductCardHTML(p)).join('');
+            }
+
+            if (trending && typeof STORE_PRODUCTS !== 'undefined') {
+                const bestSellers = [
+                    STORE_PRODUCTS[10], STORE_PRODUCTS[25], STORE_PRODUCTS[72], STORE_PRODUCTS[150]
+                ];
+                trending.innerHTML = bestSellers.map(p => app.createProductCardHTML(p)).join('');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Bag & Checkout | ÚNIQVE®</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .cart-container {
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .cart-items-list {
+            background: var(--card-bg);
+            padding: 30px;
+            border: 1px solid var(--border-grey);
+        }
+
+        .cart-summary-box {
+            background: var(--light-grey);
+            padding: 30px;
+            border: 1px solid var(--border-grey);
+            height: fit-content;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .summary-row.total {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: var(--text-main);
+            border-top: 1px solid var(--border-grey);
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <nav id="main-navbar">
+        <a href="home.html" class="nav-brand">ÚNIQVE<span class="gold-accent">®</span></a>
+        <ul class="nav-links" id="nav-links-list">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="shop.html">Shop (200+)</a></li>
+            <li><a href="shoes.html">Shoes</a></li>
+            <li><a href="clothing.html">Clothing</a></li>
+            <li><a href="accessories.html">Accessories</a></li>
+        </ul>
+        <div class="nav-icons">
+            <button onclick="app.toggleTheme()" title="Toggle Dark/Light Mode">🌙</button>
+            <a href="search.html" title="Search">🔍</a>
+            <a href="wishlist.html" title="Wishlist">❤️ <span id="wishlist-badge" class="nav-badge">0</span></a>
+            <a href="cart.html" title="Cart" style="color:var(--accent-gold);">🛒 <span id="cart-badge" class="nav-badge">0</span></a>
+            <a href="profile.html" title="Profile">👤</a>
+            <button class="mobile-menu-toggle" onclick="app.toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- Header Banner -->
+    <header style="text-align:center; padding: 60px 5%; background: var(--bg-primary); color: #fff;">
+        <h1 style="text-transform: uppercase; letter-spacing: 2px;">Shopping Bag</h1>
+        <p style="color: var(--accent-gold); letter-spacing: 1px; font-size: 0.9rem; margin-top: 10px; font-weight:700;">Review Selected ÚNIQVE Products</p>
+    </header>
+
+    <!-- Cart Layout -->
+    <main class="cart-container">
+        <!-- Cart Items List -->
+        <div class="cart-items-list" id="cart-items-container">
+            <!-- Dynamically populated via cart.js -->
+        </div>
+
+        <!-- Order Summary & Checkout -->
+        <div class="cart-summary-box">
+            <h3 style="font-size: 1.1rem; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px; font-weight:800;">Order Summary</h3>
+            
+            <!-- Coupon Code Section -->
+            <div style="margin-bottom:20px;">
+                <label style="font-size:0.8rem; text-transform:uppercase; font-weight:700; display:block; margin-bottom:6px;">Promo Code</label>
+                <div style="display:flex; gap:8px;">
+                    <input type="text" id="coupon-input" placeholder="e.g. UNIQVE10" style="flex:1; padding:10px; border:1px solid var(--border-grey); font-size:0.85rem; outline:none;">
+                    <button onclick="cartCtrl.applyCoupon(document.getElementById('coupon-input').value)" class="btn-primary" style="padding:10px 16px; font-size:0.8rem;">Apply</button>
+                </div>
+            </div>
+
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="summary-subtotal">$0.00</span>
+            </div>
+            <div class="summary-row">
+                <span>Promo Discount</span>
+                <span id="summary-discount" style="color:var(--accent-gold); font-weight:bold;">-$0.00</span>
+            </div>
+            <div class="summary-row">
+                <span>Estimated Shipping</span>
+                <span>$15.00</span>
+            </div>
+            <div class="summary-row">
+                <span>Estimated Tax</span>
+                <span id="summary-tax">$0.00</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total</span>
+                <span id="summary-total">$0.00</span>
+            </div>
+
+            <a href="checkout.html" class="btn-primary" style="width:100%; padding: 15px; margin-top: 20px; font-size: 0.85rem; text-align:center; display:block;">Proceed to Secure Checkout</a>
+            <a href="shop.html" class="btn-secondary" style="width:100%; padding: 12px; margin-top: 10px; font-size: 0.8rem; text-align:center; display:block;">Continue Shopping</a>
+        </div>
+    </main>
+
+    <!-- Footer Component -->
+    <footer>
+        <div class="footer-bottom" style="border:none; text-align:center;">
+            <span>&copy; 2026 ÚNIQVE Global Inc. All Rights Reserved.</span>
+        </div>
+    </footer>
+
+    <!-- Runtime Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            cartCtrl.renderCartView();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Story & Values | ÚNIQVE®</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .about-hero {
+            background: linear-gradient(rgba(17,17,17,0.7), rgba(17,17,17,0.7)), url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            color: #FFFFFF;
+            padding: 100px 5%;
+            text-align: center;
+        }
+
+        .about-container {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 5%;
+            line-height: 1.8;
+            color: var(--text-main);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .value-card {
+            background: var(--light-grey);
+            padding: 40px 30px;
+            border-top: 3px solid var(--accent-gold);
+            border: 1px solid var(--border-grey);
+        }
+
+        .value-card h3 {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 800;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <nav id="main-navbar">
+        <a href="home.html" class="nav-brand">ÚNIQVE<span class="gold-accent">®</span></a>
+        <ul class="nav-links" id="nav-links-list">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="shop.html">Shop (200+)</a></li>
+            <li><a href="men.html">Men</a></li>
+            <li><a href="women.html">Women</a></li>
+            <li><a href="shoes.html">Shoes</a></li>
+            <li><a href="clothing.html">Clothing</a></li>
+            <li><a href="accessories.html">Accessories</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+        </ul>
+        <div class="nav-icons">
+            <button onclick="app.toggleTheme()" title="Toggle Dark/Light Mode">🌙</button>
+            <a href="search.html" title="Search">🔍</a>
+            <a href="wishlist.html" title="Wishlist">❤️ <span id="wishlist-badge" class="nav-badge">0</span></a>
+            <a href="cart.html" title="Cart">🛒 <span id="cart-badge" class="nav-badge">0</span></a>
+            <a href="profile.html" title="Profile">👤</a>
+            <button class="mobile-menu-toggle" onclick="app.toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- About Hero Section -->
+    <header class="about-hero">
+        <h1 style="font-size: 3.2rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 15px;">Ú N I Q V E<span style="color:var(--accent-gold);">®</span></h1>
+        <p style="color: var(--accent-gold); letter-spacing: 3px; text-transform: uppercase; font-size: 1.1rem; font-weight:700;">"Designed Beyond Ordinary."</p>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="about-container">
+        <h2 style="font-size: 2rem; color: var(--text-main); margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; text-align: center; font-weight:800;">Our Brand Story</h2>
+        <p style="font-size: 1.1rem; margin-bottom: 25px; color: var(--text-muted);">
+            Founded on the principle that modern apparel and active lifestyle gear should fuse rigorous architectural precision with high-grade engineering, <strong>ÚNIQVE®</strong> stands as a symbol of distinction. We challenge convention by curating over 200+ distinct non-repeating original releases engineered for individuals who move differently.
+        </p>
+        <p style="font-size: 1.1rem; margin-bottom: 40px; color: var(--text-muted);">
+            Every sneaker silhouette, heavyweight hoodie, chronograph watch, and minimalist technical accessory is constructed using ethically sourced materials, advanced technical fabrics, and timeless design lines meant to endure seasons of transition.
+        </p>
+
+        <!-- Core Values Grid -->
+        <div class="values-grid">
+            <div class="value-card">
+                <h3>Originality Guarantee</h3>
+                <p style="color:var(--text-muted);">Over 200+ distinct items curated under the ÚNIQVE® brand name without duplicate listings or generic filler.</p>
+            </div>
+            <div class="value-card">
+                <h3>Architectural Precision</h3>
+                <p style="color:var(--text-muted);">Every seam, contour, and weave is calibrated for optimal form, balance, and aesthetic dominance.</p>
+            </div>
+            <div class="value-card">
+                <h3>Uncompromising Quality</h3>
+                <p style="color:var(--text-muted);">We source high-tier organic cottons, reinforced hardware, and responsive cushioning components worldwide.</p>
+            </div>
+        </div>
+
+        <!-- Why Choose ÚNIQVE Section -->
+        <div style="background:var(--bg-primary); color:#FFFFFF; padding:50px; text-align:center; margin-top:40px;">
+            <h3 style="font-size:1.8rem; text-transform:uppercase; letter-spacing:2px; margin-bottom:15px; font-weight:800;">Why Choose ÚNIQVE®</h3>
+            <p style="color:#A0A0A0; max-width:700px; margin:0 auto 25px; line-height:1.6;">Designed for individuals who reject mass conformity. Enjoy complimentary global express shipping, 30-day effortless returns, and 2-year guaranteed hardware warranties.</p>
+            <a href="shop.html" class="btn-primary btn-gold">Explore 200+ Releases</a>
+        </div>
+    </main>
+
+    <!-- Footer Component -->
+    <footer>
+        <div class="footer-bottom" style="border:none; text-align:center;">
+            <span>&copy; 2026 ÚNIQVE Global Inc. All Rights Reserved.</span>
+        </div>
+    </footer>
+
+    <!-- Runtime Script -->
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Search Hub | ÚNIQVE®</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .search-hero {
+            background: var(--bg-primary);
+            color: #FFFFFF;
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .search-input-wrapper {
+            max-width: 700px;
+            margin: 25px auto 0;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 18px 24px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            color: #FFFFFF;
+            font-size: 1.1rem;
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .search-input::placeholder {
+            color: #A0A0A0;
+        }
+
+        .quick-tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tag-pill {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ccc;
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .tag-pill:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <nav id="main-navbar">
+        <a href="home.html" class="nav-brand">ÚNIQVE<span class="gold-accent">®</span></a>
+        <ul class="nav-links" id="nav-links-list">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="shop.html">Shop (200+)</a></li>
+            <li><a href="shoes.html">Shoes</a></li>
+            <li><a href="clothing.html">Clothing</a></li>
+            <li><a href="accessories.html">Accessories</a></li>
+        </ul>
+        <div class="nav-icons">
+            <button onclick="app.toggleTheme()" title="Toggle Dark/Light Mode">🌙</button>
+            <a href="search.html" title="Search" style="color:var(--accent-gold);">🔍</a>
+            <a href="wishlist.html" title="Wishlist">❤️ <span id="wishlist-badge" class="nav-badge">0</span></a>
+            <a href="cart.html" title="Cart">🛒 <span id="cart-badge" class="nav-badge">0</span></a>
+            <a href="profile.html" title="Profile">👤</a>
+            <button class="mobile-menu-toggle" onclick="app.toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- Search Header Hero -->
+    <header class="search-hero">
+        <h1 style="font-size: 2.2rem; letter-spacing: 2px; text-transform: uppercase;">Discover ÚNIQVE Products</h1>
+        <div class="search-input-wrapper">
+            <input type="text" id="live-search-input" class="search-input" placeholder="Search across 200+ sneakers, hoodies, watches, apparel..." oninput="searchCtrl.handleLiveSearch()" autofocus>
+        </div>
+        <div class="quick-tags">
+            <span style="font-size:0.8rem; color:#888; align-self:center;">Popular Searches:</span>
+            <button class="tag-pill" onclick="searchCtrl.setSearchQuery('Stealth')">Stealth</button>
+            <button class="tag-pill" onclick="searchCtrl.setSearchQuery('Aero')">Aero</button>
+            <button class="tag-pill" onclick="searchCtrl.setSearchQuery('Apex')">Apex</button>
+            <button class="tag-pill" onclick="searchCtrl.setSearchQuery('Hoodie')">Hoodie</button>
+            <button class="tag-pill" onclick="searchCtrl.setSearchQuery('Runner')">Runner</button>
+            <button class="tag-pill" onclick="searchCtrl.setSearchQuery('Watch')">Watch</button>
+        </div>
+    </header>
+
+    <!-- Search Results Container -->
+    <main style="max-width: 1400px; margin: 40px auto; padding: 0 5%;">
+        <div class="product-grid" id="search-results-grid">
+            <!-- Populated dynamically via search.js -->
+        </div>
+    </main>
+
+    <!-- Footer Component -->
+    <footer>
+        <div class="footer-bottom" style="border:none; text-align:center;">
+            <span>&copy; 2026 ÚNIQVE Global Inc. All Rights Reserved.</span>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/search.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            searchCtrl.renderSearchResults("");
+        });
+    </script>
+</body>
+</html>

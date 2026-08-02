@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Support & Contact | ÚNIQVE®</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .contact-container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info-box {
+            background: var(--bg-primary);
+            color: #fff;
+            padding: 50px;
+        }
+
+        .contact-form-box {
+            background: var(--light-grey);
+            padding: 50px;
+            border: 1px solid var(--border-grey);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-grey);
+            font-size: 0.95rem;
+            outline: none;
+            color: var(--text-main);
+            transition: var(--transition-smooth);
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            border-color: var(--accent-gold);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            height: 140px;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 200px;
+            background: #222;
+            border: 1px solid var(--accent-gold);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--accent-gold);
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <nav id="main-navbar">
+        <a href="home.html" class="nav-brand">ÚNIQVE<span class="gold-accent">®</span></a>
+        <ul class="nav-links" id="nav-links-list">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="shop.html">Shop (200+)</a></li>
+            <li><a href="shoes.html">Shoes</a></li>
+            <li><a href="clothing.html">Clothing</a></li>
+            <li><a href="accessories.html">Accessories</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <div class="nav-icons">
+            <button onclick="app.toggleTheme()" title="Toggle Dark/Light Mode">🌙</button>
+            <a href="search.html" title="Search">🔍</a>
+            <a href="wishlist.html" title="Wishlist">❤️ <span id="wishlist-badge" class="nav-badge">0</span></a>
+            <a href="cart.html" title="Cart">🛒 <span id="cart-badge" class="nav-badge">0</span></a>
+            <a href="profile.html" title="Profile">👤</a>
+            <button class="mobile-menu-toggle" onclick="app.toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- Header Banner -->
+    <header style="text-align:center; padding: 60px 5%; background: var(--bg-primary); color: #fff;">
+        <h1 style="text-transform: uppercase; letter-spacing: 2px; font-weight:800;">Global Concierge &amp; Support</h1>
+        <p style="color: var(--accent-gold); letter-spacing: 1px; font-size: 0.9rem; margin-top: 10px; font-weight:700;">ÚNIQVE Client Assistance</p>
+    </header>
+
+    <!-- Main Contact Section -->
+    <main class="contact-container">
+        <!-- Information Box -->
+        <div class="contact-info-box">
+            <h2 style="font-size: 1.5rem; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px; font-weight:800;">Global Showrooms</h2>
+            <p style="color: #bbb; font-size: 0.9rem; line-height: 1.6; margin-bottom: 30px;">Our client care architectural team is available 24/7 to assist with bespoke orders, global shipping inquiries, and styling consultations.</p>
+            
+            <div style="margin-bottom: 25px;">
+                <h4 style="color: var(--accent-gold); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; margin-bottom: 5px;">New York Flagship</h4>
+                <p style="font-size: 0.85rem; color: #ccc;">520 Madison Ave, New York, NY 10022</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+                <h4 style="color: var(--accent-gold); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; margin-bottom: 5px;">Direct Concierge</h4>
+                <p style="font-size: 0.85rem; color: #ccc;">contact@uniqve.com | +1 (800) 555-0199</p>
+            </div>
+
+            <!-- Google Map Placeholder -->
+            <div class="map-placeholder">
+                📍 GOOGLE MAPS SHOWROOM LOCATION
+            </div>
+        </div>
+
+        <!-- Contact Form Box -->
+        <div class="contact-form-box">
+            <h2 style="font-size: 1.4rem; text-transform: uppercase; margin-bottom: 25px; color: var(--text-main); font-weight:800;">Send a Message</h2>
+            <form onsubmit="handleContactSubmit(event)">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" required placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Inquiry Subject</label>
+                    <input type="text" class="form-input" required placeholder="Order Status / Product Inquiry">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Message</label>
+                    <textarea class="form-textarea" required placeholder="Type your message here..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; padding: 16px; font-size: 0.85rem;">Transmit Inquiry</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer Component -->
+    <footer>
+        <div class="footer-bottom" style="border:none; text-align:center;">
+            <span>&copy; 2026 ÚNIQVE Global Inc. All Rights Reserved.</span>
+        </div>
+    </footer>
+
+    <!-- Runtime Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            app.showToast("Inquiry transmitted successfully. Our concierge will respond shortly.");
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>

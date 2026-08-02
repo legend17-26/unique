@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Collection | ÚNIQVE®</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .category-hero {
+            background: linear-gradient(rgba(17,17,17,0.7), rgba(17,17,17,0.7)), url('https://images.unsplash.com/photo-1579338559194-a162d19bf842?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            color: #FFFFFF;
+            padding: 90px 5%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <nav id="main-navbar">
+        <a href="home.html" class="nav-brand">ÚNIQVE<span class="gold-accent">®</span></a>
+        <ul class="nav-links" id="nav-links-list">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="shop.html">Shop (200+)</a></li>
+            <li><a href="men.html">Men</a></li>
+            <li><a href="women.html" class="active">Women</a></li>
+            <li><a href="shoes.html">Shoes</a></li>
+            <li><a href="clothing.html">Clothing</a></li>
+            <li><a href="accessories.html">Accessories</a></li>
+        </ul>
+        <div class="nav-icons">
+            <button onclick="app.toggleTheme()" title="Toggle Dark/Light Mode">🌙</button>
+            <a href="search.html" title="Search">🔍</a>
+            <a href="wishlist.html" title="Wishlist">❤️ <span id="wishlist-badge" class="nav-badge">0</span></a>
+            <a href="cart.html" title="Cart">🛒 <span id="cart-badge" class="nav-badge">0</span></a>
+            <a href="profile.html" title="Profile">👤</a>
+            <button class="mobile-menu-toggle" onclick="app.toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- Women's Collection Banner -->
+    <header class="category-hero">
+        <h1 style="font-size: 3rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px;">Women's Collection</h1>
+        <p style="color: var(--accent-gold); letter-spacing: 2px; text-transform: uppercase; font-size: 1rem; font-weight: 700;">Refined Style &amp; High-Performance Motion</p>
+    </header>
+
+    <!-- Products Grid -->
+    <main style="max-width: 1400px; margin: 50px auto 60px; padding: 0 5%;">
+        <div class="product-grid" id="women-products-grid">
+            <!-- Dynamically populated via script -->
+        </div>
+    </main>
+
+    <!-- Footer Component -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>ÚNIQVE®</h4>
+                <p style="color:#a0a0a0; font-size:0.9rem; max-width:280px;">"Designed Beyond Ordinary." Premium lifestyle footwear, apparel, and hardware.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Collections</h4>
+                <ul>
+                    <li><a href="men.html">Men's Collection</a></li>
+                    <li><a href="women.html">Women's Collection</a></li>
+                    <li><a href="shoes.html">Footwear</a></li>
+                    <li><a href="clothing.html">Apparel</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="contact.html">Global Support</a></li>
+                    <li><a href="checkout.html">Shipping & Returns</a></li>
+                    <li><a href="about.html">Brand Story</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 ÚNIQVE Global Inc. All Rights Reserved.</span>
+            <span>Designed Beyond Ordinary.</span>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('women-products-grid');
+            if (grid) {
+                // Filter items suitable for Women's collection
+                const womenProducts = STORE_PRODUCTS.filter((_, idx) => idx % 2 === 1);
+                grid.innerHTML = womenProducts.map(p => app.createProductCardHTML(p)).join('');
+            }
+        });
+    </script>
+</body>
+</html>
