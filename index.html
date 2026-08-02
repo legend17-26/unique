@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÚNIQVE® | Splash Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .splash-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #111111;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 20px;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        .splash-logo {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: 5px;
+            margin-bottom: 12px;
+            color: #FFFFFF;
+            text-transform: uppercase;
+        }
+
+        .splash-logo span {
+            color: var(--accent-gold);
+        }
+
+        .splash-tagline {
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .splash-loader {
+            width: 50px;
+            height: 3px;
+            background: rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .splash-loader::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            background: var(--accent-gold);
+            animation: loadingSlide 1.5s infinite ease-in-out;
+        }
+
+        @keyframes loadingSlide {
+            0% { left: -50%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="splash-container">
+        <h1 class="splash-logo">Ú N I Q V E<span>®</span></h1>
+        <p class="splash-tagline">Designed Beyond Ordinary.</p>
+        <div class="splash-loader"></div>
+    </div>
+
+    <script>
+        // Automatic Redirection to Login Page after 2.5 seconds
+        setTimeout(() => {
+            window.location.href = 'login.html';
+        }, 2500);
+    </script>
+</body>
+</html>

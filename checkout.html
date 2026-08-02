@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout | ÚNIQVE®</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        .checkout-container {
+            max-width: 1050px;
+            margin: 50px auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+        }
+
+        .checkout-form-group {
+            margin-bottom: 20px;
+        }
+
+        .checkout-form-group label {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .checkout-input {
+            width: 100%;
+            padding: 14px;
+            background: var(--light-grey);
+            border: 1px solid var(--border-grey);
+            font-size: 0.95rem;
+            outline: none;
+            color: var(--text-main);
+        }
+
+        .checkout-input:focus {
+            border-color: var(--accent-gold);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(17,17,17,0.88);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .success-modal {
+            background: var(--card-bg);
+            padding: 45px 35px;
+            max-width: 460px;
+            text-align: center;
+            border: 2px solid var(--accent-gold);
+            box-shadow: var(--shadow-elevated);
+            animation: scaleIn 0.3s ease;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <nav id="main-navbar">
+        <a href="home.html" class="nav-brand">ÚNIQVE<span class="gold-accent">®</span></a>
+        <ul class="nav-links" id="nav-links-list">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="cart.html">Bag</a></li>
+        </ul>
+        <div class="nav-icons">
+            <button onclick="app.toggleTheme()" title="Toggle Dark/Light Mode">🌙</button>
+            <a href="cart.html" title="Cart">🛒 <span id="cart-badge" class="nav-badge">0</span></a>
+        </div>
+    </nav>
+
+    <!-- Main Checkout Gateway Layout -->
+    <main class="checkout-container">
+        <div>
+            <h2 style="font-size: 1.6rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 25px; font-weight:800;">Shipping &amp; Payment Gateway</h2>
+            
+            <form id="checkout-form" onsubmit="processOrder(event)">
+                <div class="checkout-form-group">
+                    <label>Full Name</label>
+                    <input type="text" class="checkout-input" placeholder="Alexander Vance" required>
+                </div>
+                <div class="checkout-form-group">
+                    <label>Email Address</label>
+                    <input type="email" class="checkout-input" placeholder="alexander@example.com" required>
+                </div>
+                <div class="checkout-form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" class="checkout-input" placeholder="+1 (555) 019-2831" required>
+                </div>
+                <div class="checkout-form-group">
+                    <label>Shipping Street Address</label>
+                    <input type="text" class="checkout-input" placeholder="742 Evergreen Terrace" required>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="checkout-form-group">
+                        <label>City</label>
+                        <input type="text" class="checkout-input" placeholder="New York" required>
+                    </div>
+                    <div class="checkout-form-group">
+                        <label>Postal Code</label>
+                        <input type="text" class="checkout-input" placeholder="10001" required>
+                    </div>
+                </div>
+
+                <div class="checkout-form-group" style="margin-top: 30px;">
+                    <label>Select Payment Method</label>
+                    <select class="checkout-input" style="cursor:pointer; font-weight:600;">
+                        <option>Credit Card (Visa / Mastercard / Amex)</option>
+                        <option>Debit Card (Direct Bank Vault)</option>
+                        <option>UPI Instant Gateway</option>
+                        <option>Cash on Delivery (COD)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width:100%; margin-top:20px; padding:16px;">Place Order</button>
+            </form>
+        </div>
+
+        <!-- Order Summary Receipt Column -->
+        <div style="background:var(--light-grey); padding:30px; height:fit-content; border:1px solid var(--border-grey);">
+            <h3 style="font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; font-weight:800;">Order Summary</h3>
+            <div id="checkout-items-summary" style="display:flex; flex-direction:column; gap:12px; margin-bottom:20px; font-size:0.9rem;">
+                <!-- Hydrated via runtime scripts -->
+            </div>
+            <div style="border-top:1px solid var(--border-grey); padding-top:15px; font-weight:800; display:flex; justify-content:space-between; font-size:1.1rem;">
+                <span>Total Amount:</span>
+                <span id="checkout-total-price" style="color:var(--accent-gold);">$0.00</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Popup Modal -->
+    <div class="modal-overlay" id="success-modal-overlay">
+        <div class="success-modal">
+            <h2 style="font-size:1.8rem; color:var(--text-main); letter-spacing:1px; margin-bottom:15px; text-transform:uppercase; font-weight:800;">Thank You!</h2>
+            <p style="color:var(--text-muted); margin-bottom:25px; line-height:1.6;">Your order has been placed successfully. Thank you for shopping with <strong>ÚNIQVE®</strong>.</p>
+            <button onclick="window.location.href='home.html'" class="btn-primary" style="width:100%;">Return to Storefront</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+    <!-- GSAP & Lenis Smooth Motion Engine CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="js/animations.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const summaryContainer = document.getElementById('checkout-items-summary');
+            const totalContainer = document.getElementById('checkout-total-price');
+            
+            if(app.cart.length === 0) {
+                summaryContainer.innerHTML = `<p style="color:var(--text-muted);">Your bag is empty.</p>`;
+                totalContainer.innerText = `$0.00`;
+                return;
+            }
+
+            summaryContainer.innerHTML = app.cart.map(item => `
+                <div style="display:flex; justify-content:space-between;">
+                    <span style="font-weight:600;">${item.name} (x${item.quantity})</span>
+                    <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                </div>
+            `).join('');
+
+            const subtotal = app.cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            const grandTotal = subtotal + 15.00 + (subtotal * 0.08);
+            totalContainer.innerText = `$${grandTotal.toFixed(2)}`;
+        });
+
+        function processOrder(event) {
+            event.preventDefault();
+            localStorage.removeItem('store_cart');
+            app.cart = [];
+            app.saveState();
+            document.getElementById('success-modal-overlay').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
