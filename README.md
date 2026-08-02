@@ -1,1 +1,1 @@
-Deployed link: unique-blush-beta.vercel.app
+Deployed link: https://unique-blush-beta.vercel.app/
